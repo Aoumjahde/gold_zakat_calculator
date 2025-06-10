@@ -35,7 +35,7 @@ if st.button("Calculate"):
         cagr = ((value / initial_value) ** (1 / years) - 1) * 100
         
         st.subheader("💰 Current Zakat Obligation")
-        st.write(f"You are currently obligated to Pay Zakat of:   <big>**₹{zak:,.2f}**</big>", unsafe_allow_html=True)
+        st.write(f"You are currently obligated to Pay Zakat of:   <big>**₹{current_zakat:,.2f}**</big>", unsafe_allow_html=True)
 
 
         st.subheader("📋 Yearly Breakdown")
