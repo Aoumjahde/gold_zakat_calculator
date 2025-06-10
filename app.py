@@ -5,7 +5,7 @@ st.set_page_config(page_title="Gold Zakat & Growth Calculator", layout="centered
 st.title("🕌 Gold Zakat & Appreciation Calculator")
 st.markdown("Easily calculate your annual zakat and estimate gold value growth over time.")
 NISAB_GRAMS = 85
-ZAKAT_VALUE = 0.025
+ZAKAT_PERCENTAGE = 0.025
 
 
 # User inputs
@@ -19,12 +19,12 @@ if st.button("Calculate"):
     if total_gold_grams < NISAB_GRAMS:
         st.warning("⚠️ You do not need to pay zakat. The minimum threshold (nisab) is 85 grams of gold.")
     else:
-        current_zakat =  gold_grams_over_1_year * ZAKAT_VALUE* price_per_gram
-        current_gold_grams = total_gold_grams - current_zakat
+        current_zakat =  gold_grams_over_1_year * ZAKAT_PERCENTAGE* price_per_gram
+        current_gold_grams = total_gold_grams - (gold_grams_over_1_year * ZAKAT_PERCENTAGE)
 
         if gold_grams_over_1_year < NISAB_GRAMS:
             current_gold_grams = total_gold_grams
-            currentzakat = 0
+            current_zakat = 0
             
         initial_value = current_gold_grams* price_per_gram
         yearly_results = []
@@ -32,11 +32,13 @@ if st.button("Calculate"):
         value = initial_value
 
         for year in range(1, years + 1):
-            value *= (1 + growth_rate / 100)
-            current_gold_grams -=ZAKAT_VALUE
-            zakat = value * ZAKAT_VALUE
-            value -= zakat
-            yearly_results.append((year, round(value, 2), round(zakat, 2),round(current_gold_grams, 3)))
+            if current_gold_grams >= NISAB_GRAMS:
+                value *= (1 + growth_rate / 100)
+                zakat_grams = current_gold_grams * ZAKAT_PERCENTAGE
+                current_gold_grams -=zakat_grams
+                zakat = value * ZAKAT_PERCENTAGE
+                value -= zakat
+                yearly_results.append((year, round(value, 2), round(zakat, 2),round(current_gold_grams, 3)))
 
         total_appreciation = ((value - initial_value) / initial_value) * 100
         cagr = ((value / initial_value) ** (1 / years) - 1) * 100
