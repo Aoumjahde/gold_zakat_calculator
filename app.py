@@ -16,35 +16,36 @@ if st.button("Calculate"):
     if total_gold_grams < 85:
         st.warning("⚠️ You do not need to pay zakat. The minimum threshold (nisab) is 85 grams of gold.")
     else:
-        if gold_grams_over_1_year >= 85:
-            current_zakat = (gold_grams_over_1_year * 0.025) * price_per_gram
-        else:
+        
+        current_zakat = (gold_grams_over_1_year * 0.025) * price_per_gram
+        gold_value_after_current_zakat = gold_grams_over_1_year - gold_grams_over_1_year * 0.025
+
+        if gold_grams_over_1_year < 85:
             current_zakat = 0
-    gold_value_after_current_zakat = gold_grams_over_1_year - gold_grams_over_1_year * 0.025
+            gold_value_after_current_zakat = gold_grams_over_1_year
+            
+        initial_value = (total_gold_grams-gold_value_after_current_zakat) * price_per_gram
+        yearly_results = []
+        value = initial_value
 
-  
-    initial_value = (total_gold_grams-current_zakat) * price_per_gram
-    yearly_results = []
-    value = initial_value
-
-    for year in range(1, years + 1):
+        for year in range(1, years + 1):
             value *= (1 + growth_rate / 100)
             zakat = value * 0.025
             value -= zakat
             yearly_results.append((year, round(value, 2), round(zakat, 2)))
 
-    total_appreciation = ((value - initial_value) / initial_value) * 100
-    cagr = ((value / initial_value) ** (1 / years) - 1) * 100
+        total_appreciation = ((value - initial_value) / initial_value) * 100
+        cagr = ((value / initial_value) ** (1 / years) - 1) * 100
         
-    st.subheader("💰 Current Zakat Obligation")
-    st.write(f"You are currently obligated to Pay Zakat of:   <big>**₹{current_zakat:,.2f}**</big>", unsafe_allow_html=True)
+        st.subheader("💰 Current Zakat Obligation")
+        st.write(f"You are currently obligated to Pay Zakat of:   <big>**₹{current_zakat:,.2f}**</big>", unsafe_allow_html=True)
 
 
-    st.subheader("📋 Yearly Breakdown")
-    for yr, val, zak in yearly_results:
-        st.write(f"Your Zakat for year {yr}:  <big>**₹{zak:,.2f}**</big> , Total Gold Value after Zakat: ₹{val:,.2f} ", unsafe_allow_html=True)
+        st.subheader("📋 Yearly Breakdown")
+        for yr, val, zak in yearly_results:
+            st.write(f"Your Zakat for year {yr}:  <big>**₹{zak:,.2f}**</big> , Total Gold Value after Zakat: ₹{val:,.2f} ", unsafe_allow_html=True)
 
-    st.subheader("📌 Summary")
-    st.write(f"Final Value After Zakat: **₹{value:,.2f}**")
-    st.write(f"Total Appreciation After Zakat: **{total_appreciation:.2f}%**")
-    st.write(f"Effective Annual Growth (CAGR): **{cagr:.2f}%**")
+        st.subheader("📌 Summary")
+        st.write(f"Final Value After Zakat: **₹{value:,.2f}**")
+        st.write(f"Total Appreciation After Zakat: **{total_appreciation:.2f}%**")
+        st.write(f"Effective Annual Growth (CAGR): **{cagr:.2f}%**")
