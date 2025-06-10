@@ -46,6 +46,8 @@ if st.button("Calculate"):
         st.subheader("💰 Current Zakat Obligation")
         if gold_grams_over_1_year >= NISAB_GRAMS:
             st.write(f"You are currently obligated to Pay Zakat of: <big>**₹{current_zakat:,.2f}**</big>", unsafe_allow_html=True)
+            st.write(f"The Remaining Gold Value will be: <big>**{total_gold_grams - (gold_grams_over_1_year * ZAKAT_PERCENTAGE):,.2f}g**</big>", unsafe_allow_html=True)
+
         else:
             st.info("The initial gold amount held for over a year is below Nisab, so no Zakat is due currently.")
 
