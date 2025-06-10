@@ -53,7 +53,7 @@ if st.button("Calculate"):
         st.subheader("📋 Yearly Breakdown")
         for yr, val, zak,gram in yearly_results:
             if gram >= NISAB_GRAMS:
-                st.write(f"Your Zakat for year {yr}:  <big>**₹{zak:,.2f}**</big> ,Total Gold Value after Zakat: ₹{val:,.2f} , \nTotal Gold Remaining : ₹{gram:,.2f}", unsafe_allow_html=True)
+                st.write(f"Your Zakat for year {yr}:  <big>**₹{zak:,.2f}**</big> ,Total Gold Value after Zakat: ₹{val:,.2f}\n,Total Gold Remaining : {gram:,.2f}g", unsafe_allow_html=True)
         if current_gold_grams < 85:
                 st.write("The gold amount thereafter is below Nisab, so no Zakat is due.")
 
