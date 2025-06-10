@@ -17,7 +17,7 @@ if st.button("Calculate"):
         st.warning("⚠️ You do not need to pay zakat. The minimum threshold (nisab) is 85 grams of gold.")
     else:
         if gold_grams_over_1_year >= 85:
-             current_zakat = gold_grams_over_1 * 0.025
+             current_zakat = gold_grams_over_1_year * 0.025
         else:
             current_zakat = 0
   
