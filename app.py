@@ -30,7 +30,7 @@ if st.button("Calculate"):
 
         st.subheader("📋 Yearly Breakdown")
         for yr, val, zak in yearly_results:
-            st.write(f"Year {yr}: ₹{val:,.2f} after paying zakat of ₹{zak:,.2f}")
+            st.write(f"Your Zakat for year {yr}:  <big>**₹{zak:,.2f}**</big> , Total Gold Value after Zakat: ₹{val:,.2f} ")
 
         st.subheader("📌 Summary")
         st.write(f"Final Value After Zakat: **₹{value:,.2f}**")
