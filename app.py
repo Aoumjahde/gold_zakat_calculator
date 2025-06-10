@@ -17,7 +17,7 @@ if st.button("Calculate"):
         st.warning("⚠️ You do not need to pay zakat. The minimum threshold (nisab) is 85 grams of gold.")
     else:
         if gold_grams_over_1_year >= 85:
-             current_zakat = gold_grams_over_1_year * 0.025
+             current_zakat = (gold_grams_over_1_year * 0.025) * price_per_gram
         else:
             current_zakat = 0
   
@@ -35,7 +35,7 @@ if st.button("Calculate"):
         cagr = ((value / initial_value) ** (1 / years) - 1) * 100
         
         st.subheader("💰 Current Zakat Obligation")
-        st.write(f"You are currently obligated to Pay Zakat of: **₹{value:,.2f}**")
+        st.write(f"You are currently obligated to Pay Zakat of:   <big>**₹{zak:,.2f}**</big>", unsafe_allow_html=True)
 
 
         st.subheader("📋 Yearly Breakdown")
