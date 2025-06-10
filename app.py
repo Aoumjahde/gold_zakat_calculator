@@ -6,16 +6,22 @@ st.title("🕌 Gold Zakat & Appreciation Calculator")
 st.markdown("Easily calculate your annual zakat and estimate gold value growth over time.")
 
 # User inputs
-gold_grams = st.number_input("💰 Gold owned (in grams)", min_value=0.0, value=40.0, step=0.1)
-price_per_gram = st.number_input("📈 Current gold price per gram (₹)", min_value=0.0, value=6000.0, step=10.0)
+gold_grams_over_1 _year = st.number_input("💰 Gold owned more than a lunar year (in grams)", min_value=0.0, value=40.0, step=0.1)
+gold_grams_below_1_year = st.number_input("💰 Gold owned for less than a lunar year (in grams)", min_value=0.0, value=40.0, step=0.1)
+price_per_gram = st.number_input("📈 Current gold price per gram (₹)", min_value=0.0, value=8000.0, step=10.0)
 growth_rate = st.number_input("📊 Expected yearly appreciation (%)", min_value=0.0, value=8.0, step=0.1)
 years = st.number_input("📅 Holding period (years)", min_value=1, value=5, step=1)
-
+total_gold_grams = gold_grams_over_1 _year + gold_grams_below_1_year
 if st.button("Calculate"):
-    if gold_grams < 85:
+    if total_gold_grams < 85:
         st.warning("⚠️ You do not need to pay zakat. The minimum threshold (nisab) is 85 grams of gold.")
     else:
-        initial_value = gold_grams * price_per_gram
+        if gold_grams_over_1 _year >= 85:
+             current_zakat = gold_grams_over_1 * 0.025
+        else:
+            current_zakat = 0
+  
+        initial_value = (total_gold_grams-current_zakat) * price_per_gram
         yearly_results = []
         value = initial_value
 
@@ -27,6 +33,10 @@ if st.button("Calculate"):
 
         total_appreciation = ((value - initial_value) / initial_value) * 100
         cagr = ((value / initial_value) ** (1 / years) - 1) * 100
+        
+        st.subheader("💰 Current Zakat Obligation")
+        st.write(f"You are currently obligated to Pay Zakat of: **₹{value:,.2f}**")
+
 
         st.subheader("📋 Yearly Breakdown")
         for yr, val, zak in yearly_results:
