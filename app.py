@@ -36,7 +36,7 @@ if st.button("Calculate"):
             current_gold_grams -=ZAKAT_VALUE
             zakat = value * ZAKAT_VALUE
             value -= zakat
-            yearly_results.append((year, round(value, 2), round(zakat, 2),round(current_gold_grams, 3))
+            yearly_results.append((year, round(value, 2), round(zakat, 2),round(current_gold_grams, 3)))
 
         total_appreciation = ((value - initial_value) / initial_value) * 100
         cagr = ((value / initial_value) ** (1 / years) - 1) * 100
