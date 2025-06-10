@@ -45,6 +45,6 @@ if st.button("Calculate"):
         st.write(f"Your Zakat for year {yr}:  <big>**₹{zak:,.2f}**</big> , Total Gold Value after Zakat: ₹{val:,.2f} ", unsafe_allow_html=True)
 
     st.subheader("📌 Summary")
-        st.write(f"Final Value After Zakat: **₹{value:,.2f}**")
-        st.write(f"Total Appreciation After Zakat: **{total_appreciation:.2f}%**")
-        st.write(f"Effective Annual Growth (CAGR): **{cagr:.2f}%**")
+    st.write(f"Final Value After Zakat: **₹{value:,.2f}**")
+    st.write(f"Total Appreciation After Zakat: **{total_appreciation:.2f}%**")
+    st.write(f"Effective Annual Growth (CAGR): **{cagr:.2f}%**")
