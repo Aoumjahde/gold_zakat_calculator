@@ -20,7 +20,7 @@ if st.button("Calculate"):
             current_zakat = (gold_grams_over_1_year * 0.025) * price_per_gram
         else:
             current_zakat = 0
-    gold_value_after_current_zakat -= gold_grams_over_1_year * 0.025
+    gold_value_after_current_zakat = gold_grams_over_1_year - gold_grams_over_1_year * 0.025
 
   
     initial_value = (total_gold_grams-current_zakat) * price_per_gram
