@@ -6,7 +6,7 @@ st.title("🕌 Gold Zakat & Appreciation Calculator")
 st.markdown("Easily calculate your annual zakat and estimate gold value growth over time.")
 
 # User inputs
-gold_grams_over_1 _year = st.number_input("💰 Gold owned more than a lunar year (in grams)", min_value=0.0, value=40.0, step=0.1)
+gold_grams_over_1_year = st.number_input("💰 Gold owned more than a lunar year (in grams)", min_value=0.0, value=40.0, step=0.1)
 gold_grams_below_1_year = st.number_input("💰 Gold owned for less than a lunar year (in grams)", min_value=0.0, value=40.0, step=0.1)
 price_per_gram = st.number_input("📈 Current gold price per gram (₹)", min_value=0.0, value=8000.0, step=10.0)
 growth_rate = st.number_input("📊 Expected yearly appreciation (%)", min_value=0.0, value=8.0, step=0.1)
