@@ -1,3 +1,8 @@
+import locale
+locale.setlocale(locale.LC_ALL, 'en_IN')
+formatted = locale.format_string("%d", int(value), grouping=True)
+
+
 import streamlit as st
 
 st.set_page_config(page_title="Gold Zakat & Growth Calculator", layout="centered")
