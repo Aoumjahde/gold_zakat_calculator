@@ -39,32 +39,32 @@ if st.button("Calculate"):
         
         value = initial_value
 
-for year in range(1, years + 1):
-    price_per_gram *= (1 + growth_rate / 100)
-    zakat_grams = 0
-    zakat_value = 0
-    status = "❌ No zakat (below Nisab)"
+        for year in range(1, years + 1):
+            price_per_gram *= (1 + growth_rate / 100)
+            zakat_grams = 0
+            zakat_value = 0
+            status = "❌ No zakat (below Nisab)"
 
-    if current_gold_grams >= NISAB_GRAMS:
-        zakat_grams = current_gold_grams * ZAKAT_PERCENTAGE
-        current_gold_grams -= zakat_grams
-        zakat_value = zakat_grams * price_per_gram + 1
-        total_zakat_paid.append(zakat_grams)
-        total_zakat_paid_value.append(zakat_value)
-        status = "✅ Zakat Due"
-    else:
-        total_zakat_paid.append(0)
-        total_zakat_paid_value.append(0)
+            if current_gold_grams >= NISAB_GRAMS:
+                zakat_grams = current_gold_grams * ZAKAT_PERCENTAGE
+                current_gold_grams -= zakat_grams
+                zakat_value = zakat_grams * price_per_gram + 1
+                total_zakat_paid.append(zakat_grams)
+                total_zakat_paid_value.append(zakat_value)
+                status = "✅ Zakat Due"
+            else:
+                total_zakat_paid.append(0)
+                total_zakat_paid_value.append(0)
 
-    value = current_gold_grams * price_per_gram + 1
-    yearly_results.append((
-        year,
-        round(zakat_grams, 2),
-        round(current_gold_grams, 2),
-        round(zakat_value),
-        round(value),
-        status
-    ))
+            value = current_gold_grams * price_per_gram + 1
+            yearly_results.append((
+                year,
+                round(zakat_grams, 2),
+                round(current_gold_grams, 2),
+                round(zakat_value),
+                round(value),
+                status))
+                    
 
         total_appreciation = ((value - initial_value) / initial_value) * 100
         cagr = ((value / initial_value) ** (1 / years) - 1) * 100
