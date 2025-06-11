@@ -76,15 +76,18 @@ if st.button("Calculate"):
         if gold_grams_over_1_year >= NISAB_GRAMS:
             year+=1
         
-        st.markdown("<h5 style='margin-top: -10px;'>Zakat</h5>", unsafe_allow_html=True)
+        st.markdown("<h5 style='margin-top: -10px;'>Zakat Paid</h5>", unsafe_allow_html=True)
         st.write(f"Total Zakat Paid over {year} years: **{sum(total_zakat_paid):,.2f}g**")
         st.write(f"Value of Total Zakat Paid in INR: **₹{sum(total_zakat_paid_value):,.2f}**")
-        st.write(f"Gold Currently Holding in Grams: **{current_gold_grams:,.2f}g**")
 
         st.write(" ")
-        
-        st.markdown("<h5 style='margin-top: -10px;'>Growth and Appreciation</h5>", unsafe_allow_html=True)
 
+        st.markdown("<h5 style='margin-top: -10px;'>Gold after Zakat</h5>", unsafe_allow_html=True)
+        st.write(f"Gold Currently Holding in Grams: **{current_gold_grams:,.2f}g**")
         st.write(f"Final Value of Gold Currently Holding: **₹{value:,.2f}**")
+
+        st.write(" ")
+
+        st.markdown("<h5 style='margin-top: -10px;'>Growth in Value</h5>", unsafe_allow_html=True)
         st.write(f"Total Appreciation (After Zakat): **{total_appreciation:.2f}%**")
         st.write(f"Effective Annual Growth (CAGR): **{cagr:.2f}%**")
