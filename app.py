@@ -71,9 +71,13 @@ if st.button("Calculate"):
                 st.info("The gold amount thereafter is below Nisab, so no Zakat is due.")
 
         st.subheader("📌 Summary")
+
+        year = yearly_results[-1][0]
+        if gold_grams_over_1_year >= NISAB_GRAMS:
+            year+=1
         
         st.markdown("<h5 style='margin-top: -10px;'>Zakat</h5>", unsafe_allow_html=True)
-        st.write(f"Total Zakat Paid over {yearly_results[-1][0]+1} years: **{sum(total_zakat_paid):,.2f}g**")
+        st.write(f"Total Zakat Paid over {year} years: **{sum(total_zakat_paid):,.2f}g**")
         st.write(f"Value of Total Zakat Paid in INR: **₹{sum(total_zakat_paid_value):,.2f}**")
         st.write(f"Gold Currently Holding in Grams: **{current_gold_grams:,.2f}g**")
 
