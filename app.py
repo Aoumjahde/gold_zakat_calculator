@@ -42,7 +42,7 @@ if st.button("Calculate"):
                 zakat_grams = current_gold_grams * ZAKAT_PERCENTAGE
                 current_gold_grams -=zakat_grams
                 zakat_value = zakat_grams * price_per_gram + 1 
-                value -= zakat_value + 1
+                value = current_gold_grams * price per gram + 1
                 yearly_results.append((year, round(zakat_grams, 2), round(current_gold_grams, 2),round(zakat_value),round(value)))
 
         total_appreciation = ((value - initial_value) / initial_value) * 100
