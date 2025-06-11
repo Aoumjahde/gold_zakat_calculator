@@ -1,7 +1,3 @@
-import locale
-locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
-formatted = locale.format_string("%d", int(value), grouping=True)
-
 
 import streamlit as st
 
@@ -56,8 +52,8 @@ if st.button("Calculate"):
         
         st.subheader("💰 Current Zakat Obligation")
         if gold_grams_over_1_year >= NISAB_GRAMS:
-            st.write(f"You are currently obligated to Pay Zakat of:<big>**{current_zakat:,.2f}g**</big>, worth <big>**₹{round(current_zakat_value)}**</big>", unsafe_allow_html=True)
-            st.write(f"The Remaining Gold will be: <big>**{total_gold_grams - current_zakat:,.2f}g**</big>, worth <big>**₹{round(initial_value)}**</big>" , unsafe_allow_html=True)
+            st.write(f"You are currently obligated to Pay Zakat of:<big>**{current_zakat:,.2f}g**</big>, worth <big>**₹{round(current_zakat_value:,.0f)}**</big>", unsafe_allow_html=True)
+            st.write(f"The Remaining Gold will be: <big>**{total_gold_grams - current_zakat:,.2f}g**</big>, worth <big>**₹{round(initial_value):,.0f}**</big>" , unsafe_allow_html=True)
 
         else:
             st.info("The initial gold amount held for over a year is below Nisab, so no Zakat is due currently.")
@@ -65,8 +61,8 @@ if st.button("Calculate"):
 
         st.subheader("📋 Yearly Breakdown")
         for yr, zak_gram, current_gram,zak_value, value in yearly_results:
-            st.write(f""" Your Zakat for year {yr}:  <big><b>{zak_gram:,.2f}g</b></big>, worth <big><b>₹{zak_value}</b></big><br>
-            Total Gold after Zakat:  <big><b>{current_gram:,.2f}g</b></big>, worth <big><b>₹{value}</b></big> """, unsafe_allow_html=True)
+            st.write(f""" Your Zakat for year {yr}:  <big><b>{zak_gram:,.2f}g</b></big>, worth <big><b>₹{zak_value:,.0f}</b></big><br>
+            Total Gold after Zakat:  <big><b>{current_gram:,.2f}g</b></big>, worth <big><b>₹{value:,.0f}</b></big> """, unsafe_allow_html=True)
         if current_gold_grams < 85:
                 st.info("The gold amount thereafter is below Nisab, so no Zakat is due.")
 
