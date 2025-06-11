@@ -46,6 +46,7 @@ if st.button("Calculate"):
                 price_per_gram *= (1 + growth_rate / 100)
                 zakat_grams = current_gold_grams * ZAKAT_PERCENTAGE
                 current_gold_grams -=zakat_grams
+                # adds 1 so that the user does not underpay Zakat because of rounding
                 zakat_value = zakat_grams * price_per_gram + 1 
                 value = current_gold_grams * price_per_gram + 1
                 yearly_results.append((year, round(zakat_grams, 2), round(current_gold_grams, 2),round(zakat_value),round(value)))
