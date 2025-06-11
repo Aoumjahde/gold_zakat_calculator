@@ -1,5 +1,5 @@
 import locale
-locale.setlocale(locale.LC_ALL, 'en_IN')
+locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 formatted = locale.format_string("%d", int(value), grouping=True)
 
 
