@@ -72,12 +72,12 @@ if st.button("Calculate"):
 
         st.subheader("📌 Summary")
         
-        st.markdown("<h4 style='margin-top: -10px;'>Zakat</h4>", unsafe_allow_html=True)
-        st.write(f"Total Zakat Paid over {yearly_results[-1][0]+1}: **₹{sum(total_zakat_paid):,.2f}**")
+        st.markdown("<h5 style='margin-top: -10px;'>Zakat</h5>", unsafe_allow_html=True)
+        st.write(f"Total Zakat Paid over {yearly_results[-1][0]+1} years: **₹{sum(total_zakat_paid):,.2f}**")
         st.write(f"Value of Total Zakat Paid in INR: **₹{sum(total_zakat_paid_value):,.2f}**")
-        st.write(f"Gold Currently Holding in Grams: **₹{current_gold_grams:,.2f}**")
+        st.write(f"Gold Currently Holding in Grams: **{current_gold_grams:,.2f}g**")
 
-        st.markdown("<h4 style='margin-top: -10px;'>Growth and Apprciation</h4>", unsafe_allow_html=True)
+        st.markdown("<h5 style='margin-top: -10px;'>Growth and Apprciation</h5>", unsafe_allow_html=True)
 
         st.write(f"Final Value of Gold Currently Holding: **₹{value:,.2f}**")
         st.write(f"Total Appreciation (After Zakat): **{total_appreciation:.2f}%**")
