@@ -43,15 +43,15 @@ if st.button("Calculate"):
                 current_gold_grams -=zakat_grams
                 zakat_value = zakat_grams * price_per_gram + 1 
                 value -= zakat_value + 1
-                yearly_results.append((year, round(zakat_grams, 2), round(current_gold_grams, 2),zakat_value,value ))
+                yearly_results.append((year, round(zakat_grams, 2), round(current_gold_grams, 2),round(zakat_value),round(value))
 
         total_appreciation = ((value - initial_value) / initial_value) * 100
         cagr = ((value / initial_value) ** (1 / years) - 1) * 100
         
         st.subheader("💰 Current Zakat Obligation")
         if gold_grams_over_1_year >= NISAB_GRAMS:
-            st.write(f"You are currently obligated to Pay Zakat of:<big>**{current_zakat:,.2f}g**</big>, worth <big>**₹{current_zakat_value}**</big>", unsafe_allow_html=True)
-            st.write(f"The Remaining Gold will be: <big>**{total_gold_grams - current_zakat:,.2f}g**</big>, worth <big>**₹{initial_value}**</big>" , unsafe_allow_html=True)
+            st.write(f"You are currently obligated to Pay Zakat of:<big>**{current_zakat:,.2f}g**</big>, worth <big>**₹{round(current_zakat_value)}**</big>", unsafe_allow_html=True)
+            st.write(f"The Remaining Gold will be: <big>**{total_gold_grams - current_zakat:,.2f}g**</big>, worth <big>**₹{round(initial_value)}**</big>" , unsafe_allow_html=True)
 
         else:
             st.info("The initial gold amount held for over a year is below Nisab, so no Zakat is due currently.")
