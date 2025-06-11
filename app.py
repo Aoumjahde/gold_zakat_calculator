@@ -43,7 +43,7 @@ for year in range(1, years + 1):
     price_per_gram *= (1 + growth_rate / 100)
     zakat_grams = 0
     zakat_value = 0
-    status = "Below Nisab"
+    status = "❌ No zakat (below Nisab)"
 
     if current_gold_grams >= NISAB_GRAMS:
         zakat_grams = current_gold_grams * ZAKAT_PERCENTAGE
@@ -51,7 +51,7 @@ for year in range(1, years + 1):
         zakat_value = zakat_grams * price_per_gram + 1
         total_zakat_paid.append(zakat_grams)
         total_zakat_paid_value.append(zakat_value)
-        status = "Zakat Paid"
+        status = "✅ Zakat Due"
     else:
         total_zakat_paid.append(0)
         total_zakat_paid_value.append(0)
@@ -79,7 +79,8 @@ for year in range(1, years + 1):
 
 
         st.subheader("📋 Yearly Breakdown")
-        for yr, zak_gram, current_gram,zak_value, value in yearly_results:
+        for yr, zak_gram, current_gram,zak_value, value, status in yearly_results:
+            st.write(status)
             st.write(f""" Your Zakat for year {yr}:  <big><b>{zak_gram:,.2f}g</b></big>, worth <big><b>₹{zak_value:,.0f}</b></big><br>
             Total Gold after Zakat:  <big><b>{current_gram:,.2f}g</b></big>, worth <big><b>₹{value:,.0f}</b></big> """, unsafe_allow_html=True)
         if current_gold_grams < 85:
