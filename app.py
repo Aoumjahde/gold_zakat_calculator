@@ -77,6 +77,8 @@ if st.button("Calculate"):
         st.write(f"Value of Total Zakat Paid in INR: **₹{sum(total_zakat_paid_value):,.2f}**")
         st.write(f"Gold Currently Holding in Grams: **{current_gold_grams:,.2f}g**")
 
+        /n
+
         st.markdown("<h5 style='margin-top: -10px;'>Growth and Apprciation</h5>", unsafe_allow_html=True)
 
         st.write(f"Final Value of Gold Currently Holding: **₹{value:,.2f}**")
