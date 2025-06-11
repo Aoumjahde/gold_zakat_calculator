@@ -41,9 +41,9 @@ if st.button("Calculate"):
                 price_per_gram *= (1 + growth_rate / 100)
                 zakat_grams = current_gold_grams * ZAKAT_PERCENTAGE
                 current_gold_grams -=zakat_grams
-                zakat_value = zakat_grams * price_per_gram
-                value -= zakat_value
-                yearly_results.append((year, round(zakat_grams, 2), round(current_gold_grams, 3),round(zakat_value, 2),round(value, 2)))
+                zakat_value = zakat_grams * price_per_gram + 1 
+                value -= zakat_value + 1
+                yearly_results.append((year, round(zakat_grams, 2), round(current_gold_grams, 2),zakat_value,value ))
 
         total_appreciation = ((value - initial_value) / initial_value) * 100
         cagr = ((value / initial_value) ** (1 / years) - 1) * 100
@@ -59,7 +59,8 @@ if st.button("Calculate"):
 
         st.subheader("📋 Yearly Breakdown")
         for yr, zak_gram, current_gram,zak_value, value in yearly_results:
-            st.write(f"Your Zakat for year {yr}:  <big>**₹{zak_gram:,.2f}**</big> , worth <big>**₹{zak_value}**</big> ,\nTotal Gold after Zakat: <big>**{current_gram:,.2f}g**</big>, worth <big>**₹{value}**</big>", unsafe_allow_html=True)
+            st.write(f""" Your Zakat for year {yr}:  <big><b>{zak_gram:,.2f}g</b></big>, worth <big><b>₹{zak_value}</b></big><br>
+            Total Gold after Zakat:  <big><b>{current_gram:,.2f}g</b></big>, worth <big><b>₹{value}</b></big> """, unsafe_allow_html=True)
         if current_gold_grams < 85:
                 st.info("The gold amount thereafter is below Nisab, so no Zakat is due.")
 
