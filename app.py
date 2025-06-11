@@ -80,11 +80,16 @@ if st.button("Calculate"):
 
         st.subheader("📋 Yearly Breakdown")
         for yr, zak_gram, current_gram,zak_value, value, status in yearly_results:
-            st.write(status)
-            st.write(f""" Your Zakat for year {yr}:  <big><b>{zak_gram:,.2f}g</b></big>, worth <big><b>₹{zak_value:,.0f}</b></big><br>
-            Total Gold after Zakat:  <big><b>{current_gram:,.2f}g</b></big>, worth <big><b>₹{value:,.0f}</b></big> """, unsafe_allow_html=True)
-        if current_gold_grams < 85:
+            if status == "✅ Zakat Due" and current_gold_grams >= 85:
+                st.write(status)
+                st.write(f""" Your Zakat for year {yr}:  <big><b>{zak_gram:,.2f}g</b></big>, worth <big><b>₹{zak_value:,.0f}</b></big><br>
+                Total Gold after Zakat:  <big><b>{current_gram:,.2f}g</b></big>, worth <big><b>₹{value:,.0f}</b></big> """, unsafe_allow_html=True)
+            elif status == "✅ Zakat Due" and current_gold_grams < 85:
                 st.info("The gold amount thereafter is below Nisab, so no Zakat is due.")
+                st.write(Total Gold Holding:  <big><b>{current_gram:,.2f}g</b></big>, worth <big><b>₹{value:,.0f}</b></big> """, unsafe_allow_html=True)
+            elif status == "❌ No zakat (below Nisab)":
+                st.write(Total Gold Holding:  <big><b>{current_gram:,.2f}g</b></big>, worth <big><b>₹{value:,.0f}</b></big> """, unsafe_allow_html=True)
+
 
         st.subheader("📌 Summary")
 
