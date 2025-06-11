@@ -34,6 +34,8 @@ if st.button("Calculate"):
             
         initial_value = current_gold_grams* price_per_gram
         yearly_results = []
+        total_zakat_paid = [current_zakat]
+        total_zakat_paid_value = [current_zakat_value]
         
         value = initial_value
 
@@ -45,6 +47,8 @@ if st.button("Calculate"):
                 # adds 1 so that the user does not underpay Zakat because of rounding
                 zakat_value = zakat_grams * price_per_gram + 1 
                 value = current_gold_grams * price_per_gram + 1
+                total_zakat_paid.append(zakat_grams)
+                total_zakat_paid_value.append(zakat_value)
                 yearly_results.append((year, round(zakat_grams, 2), round(current_gold_grams, 2),round(zakat_value),round(value)))
 
         total_appreciation = ((value - initial_value) / initial_value) * 100
@@ -67,6 +71,14 @@ if st.button("Calculate"):
                 st.info("The gold amount thereafter is below Nisab, so no Zakat is due.")
 
         st.subheader("📌 Summary")
-        st.write(f"Final Value After Zakat: **₹{value:,.2f}**")
-        st.write(f"Total Appreciation After Zakat: **{total_appreciation:.2f}%**")
+        
+        st.markdown("<h4 style='margin-top: -10px;'>Zakat</h4>", unsafe_allow_html=True)
+        st.write(f"Total Zakat Paid over {yearly_results[-1][0]+1}: **₹{sum(total_zakat_paid):,.2f}**")
+        st.write(f"Value of Total Zakat Paid in INR: **₹{sum(total_zakat_paid_value):,.2f}**")
+        st.write(f"Gold Currently Holding in Grams: **₹{current_gold_grams:,.2f}**")
+
+        st.markdown("<h4 style='margin-top: -10px;'>Growth and Apprciation</h4>", unsafe_allow_html=True)
+
+        st.write(f"Final Value of Gold Currently Holding: **₹{value:,.2f}**")
+        st.write(f"Total Appreciation (After Zakat): **{total_appreciation:.2f}%**")
         st.write(f"Effective Annual Growth (CAGR): **{cagr:.2f}%**")
