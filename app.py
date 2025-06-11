@@ -16,12 +16,12 @@ price_per_gram = st.number_input("📈 Current gold price per gram (₹)", min_v
 growth_rate = st.number_input("📊 Expected yearly appreciation in INR (%)", min_value=0.0, value=8.0, step=0.1)
 years = st.number_input("📅 Holding period (years)", min_value=1, value=5, step=1)
 
+total_gold_grams = gold_grams_over_1_year + gold_grams_below_1_year
 
 if st.button("Calculate"):
     if total_gold_grams < NISAB_GRAMS:
         st.warning("⚠️ You do not need to pay zakat. The minimum threshold (nisab) is 85 grams of gold.")
     else:
-        total_gold_grams = gold_grams_over_1_year + gold_grams_below_1_year
         current_zakat =  gold_grams_over_1_year * ZAKAT_PERCENTAGE
         current_zakat_value =  current_zakat* price_per_gram
         current_gold_grams = total_gold_grams - current_zakat
