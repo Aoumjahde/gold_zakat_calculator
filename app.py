@@ -85,9 +85,10 @@ if st.button("Calculate"):
                 st.write(f""" For year {yr}, Your Zakat:  <big><b>{zak_gram:,.2f}g</b></big>, worth <big><b>₹{zak_value:,.0f}</b></big><br>
                 Total Gold after Zakat:  <big><b>{current_gram:,.2f}g</b></big>, worth <big><b>₹{value:,.0f}</b></big> """, unsafe_allow_html=True)
             elif status == "✅ Zakat Due" and current_gram < 85:
-                st.info("The gold amount thereafter is below Nisab, so no Zakat is due.")
                 st.write(status)
-                st.write(f"For Year {yr}: Total Gold Holding:  <big><b>{current_gram:,.2f}g</b></big>, worth <big><b>₹{value:,.0f}</b></big> ", unsafe_allow_html=True)
+                st.write(f""" For year {yr}, Your Zakat:  <big><b>{zak_gram:,.2f}g</b></big>, worth <big><b>₹{zak_value:,.0f}</b></big><br>
+                Total Gold after Zakat:  <big><b>{current_gram:,.2f}g</b></big>, worth <big><b>₹{value:,.0f}</b></big> """, unsafe_allow_html=True)
+                st.info("The gold amount thereafter is below Nisab, so no Zakat is due.")
             elif status == "❌ No zakat (below Nisab)":
                 st.write(status)
                 st.write(f"For Year {yr}: Total Gold Holding:  <big><b>{current_gram:,.2f}g</b></big>, worth <big><b>₹{value:,.0f}</b></big> ", unsafe_allow_html=True)
