@@ -11,8 +11,17 @@ ZAKAT_PERCENTAGE = 0.025
 
 
 # User inputs
-gold_grams_over_1_year = st.number_input("💰 Gold owned more than a lunar year (in grams)", min_value=0.0, value=40.0, step=0.1)
-gold_grams_below_1_year = st.number_input("💰 Gold owned for less than a lunar year (in grams)", min_value=0.0, value=40.0, step=0.1)
+unit = st.radio("Select Unit of Measurement", ["Grams", "Pawan (8g)"], horizontal=True)
+
+if unit == "Grams":
+    gold_grams_over_1_year = st.number_input("💰 Gold owned more than a lunar year (in grams)", min_value=0.0, value=40.0, step=0.1)
+    gold_grams_below_1_year = st.number_input("💰 Gold owned for less than a lunar year (in grams)", min_value=0.0, value=40.0, step=0.1)
+else:
+    pawan_over = st.number_input("💰 Gold owned more than a lunar year (in pawan)", min_value=0.0, value=5.0, step=0.1)
+    pawan_below = st.number_input("💰 Gold owned for less than a lunar year (in pawan)", min_value=0.0, value=5.0, step=0.1)
+    gold_grams_over_1_year = pawan_over * 8
+    gold_grams_below_1_year = pawan_below * 8
+
 price_per_gram = st.number_input("📈 Current gold price per gram (₹)", min_value=0.0, value=8000.0, step=10.0)
 growth_rate = st.number_input("📊 Expected yearly appreciation in INR (%)", min_value=0.0, value=8.0, step=0.1)
 years = st.number_input("📅 Holding period (years)", min_value=1, value=5, step=1)
