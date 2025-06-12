@@ -125,3 +125,32 @@ if st.button("Calculate"):
         st.markdown("<h5 style='margin-top: -10px;'>Growth in Value</h5>", unsafe_allow_html=True)
         st.write(f"Total Appreciation (After Zakat): **{total_appreciation:.2f}%**")
         st.write(f"Effective Annual Growth (CAGR): **{cagr:.2f}%**")
+st.markdown("""
+<style>
+.disclaimer-box {
+    background-color: #f1f3f6;
+    padding: 15px 20px;
+    border-left: 5px solid #ffcc00;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #333;
+    margin-top: 40px;
+    line-height: 1.6;
+}
+.disclaimer-box h4 {
+    margin-top: 0;
+    color: #cc0000;
+}
+</style>
+
+<div class="disclaimer-box">
+    <h4>⚠️ Disclaimer</h4>
+    <ul>
+        <li>This calculator follows the <strong>Shafi’i school of jurisprudence</strong> and is for <strong>educational purposes only</strong>. Please consult a <strong>qualified Islamic scholar</strong> for final rulings.</li>
+        <li>The calculator assumes assets are held for <strong>less than two years</strong>. If held longer, <strong>zakat for previous years</strong> may apply, which is not calculated here.</li>
+        <li>Gold and silver kept <strong>solely for personal jewelry use</strong> (e.g., by women or children) are generally <strong>not zakatable</strong>.</li>
+        <li>Asset growth shown is an <strong>estimate only</strong> based on past market trends. Returns are <strong>not guaranteed</strong>.</li>
+    </ul>
+</div>
+""", unsafe_allow_html=True)
+
