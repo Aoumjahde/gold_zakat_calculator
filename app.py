@@ -105,16 +105,20 @@ if st.button("Calculate"):
                     st.write(f"""For year {yr}, Zakat: <big>{zak_gram:,.2f}g ({pawan_gram:,.2f} pawan)</big>, worth <big>₹{zak_value:,.0f}</big>.
                     Gold after Zakat: <big>{current_gram:,.2f}g ({pawan_curr:,.2f} pawan)</big>, worth <big>₹{value:,.0f}</big>""", unsafe_allow_html=True)
                 else:
-                    st.write(f"""For Year {yrs}, total Gold: <big>{current_gram:,.2f}g ({pawan_curr:,.2f} pawan)</big>, worth <big>₹{value:,.0f}</big>""", unsafe_allow_html=True)
+                    st.write(f"""For Year {yr}, total Gold: <big>{current_gram:,.2f}g ({pawan_curr:,.2f} pawan)</big>, worth <big>₹{value:,.0f}</big>""", unsafe_allow_html=True)
 
             else:
                 if status == "✅ Zakat Due":
-                    st.write(f"""For year {yrs}, Zakat: <big>{zak_gram:,.2f}g</big>, worth <big>₹{zak_value:,.0f}</big>.
+                    st.write(f"""For year {yr}, Zakat: <big>{zak_gram:,.2f}g</big>, worth <big>₹{zak_value:,.0f}</big>.
                     Gold after Zakat: <big>{current_gram:,.2f}g</big>, worth <big>₹{value:,.0f}</big>""", unsafe_allow_html=True)
                 else:
-                    st.write(f"""For Year {yrs}, total Gold: <big>{current_gram:,.2f}g</big>, worth <big>₹{value:,.0f}</big>""", unsafe_allow_html=True)
+                    st.write(f"""For Year {yr}, total Gold: <big>{current_gram:,.2f}g</big>, worth <big>₹{value:,.0f}</big>""", unsafe_allow_html=True)
 
         st.subheader("📌 Summary")
+
+        years = yearly_results[-1][0]
+        if gold_grams_over_1_year >= NISAB_GRAMS:
+            years+=1
         total_zakat_grams = sum(total_zakat_paid)
         pawan_total = grams_to_pawan(total_zakat_grams)
 
