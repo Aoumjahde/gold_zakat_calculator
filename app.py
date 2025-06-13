@@ -1,3 +1,4 @@
+
 import streamlit as st
 
 st.set_page_config(page_title="Gold Zakat & Growth Calculator", layout="centered")
@@ -8,9 +9,6 @@ st.markdown("Easily calculate your annual zakat and estimate gold value growth o
 NISAB_GRAMS = 85
 ZAKAT_PERCENTAGE = 0.025
 
-def grams_to_pawan(grams):
-    """Convert grams to pawan (1 pawan = 8 grams) """
-    return grams / 8
 
 # User inputs
 unit = st.radio("Select Unit of Measurement", ["Grams", "Pawan (8g)"], horizontal=True)
@@ -32,10 +30,10 @@ total_gold_grams = gold_grams_over_1_year + gold_grams_below_1_year
 
 if st.button("Calculate"):
     if total_gold_grams < NISAB_GRAMS:
-        st.warning("⚠️ You do not need to pay Zakat. The minimum threshold (nisab) is 85 grams of gold.")
+        st.warning("⚠️ You do not need to pay zakat. The minimum threshold (nisab) is 85 grams of gold.")
     else:
         current_zakat =  gold_grams_over_1_year * ZAKAT_PERCENTAGE
-        current_zakat_value =  current_zakat * price_per_gram
+        current_zakat_value =  current_zakat* price_per_gram
         current_gold_grams = total_gold_grams - current_zakat
 
         if gold_grams_over_1_year < NISAB_GRAMS:
@@ -43,7 +41,7 @@ if st.button("Calculate"):
             current_zakat = 0
             current_zakat_value = 0
             
-        initial_value = current_gold_grams * price_per_gram
+        initial_value = current_gold_grams* price_per_gram
         yearly_results = []
         total_zakat_paid = [current_zakat]
         total_zakat_paid_value = [current_zakat_value]
@@ -59,24 +57,22 @@ if st.button("Calculate"):
             if current_gold_grams >= NISAB_GRAMS:
                 zakat_grams = current_gold_grams * ZAKAT_PERCENTAGE
                 current_gold_grams -= zakat_grams
-                zakat_value = zakat_grams * price_per_gram
+                zakat_value = zakat_grams * price_per_gram + 1
                 total_zakat_paid.append(zakat_grams)
                 total_zakat_paid_value.append(zakat_value)
                 status = "✅ Zakat Due"
-
             else:
                 total_zakat_paid.append(0)
                 total_zakat_paid_value.append(0)
 
-            value = current_gold_grams * price_per_gram
+            value = current_gold_grams * price_per_gram + 1
             yearly_results.append((
                 year,
                 round(zakat_grams, 2),
                 round(current_gold_grams, 2),
                 round(zakat_value),
                 round(value),
-                status
-            ))
+                status))
                     
 
         total_appreciation = ((value - initial_value) / initial_value) * 100
@@ -84,58 +80,51 @@ if st.button("Calculate"):
         
         st.subheader("💰 Current Zakat Obligation")
         if gold_grams_over_1_year >= NISAB_GRAMS:
-            if unit == "Pawan":
-                st.write(f"You are currently obligated to pay Zakat of: <big>**{current_zakat:,.2f}g ({grams_to_pawan(current_zakat):,.2f} pawan)**</big>, worth <big>**₹{current_zakat_value:,.0f}**</big>", unsafe_allow_html=True)
-                st.write(f"The Remaining Gold will be: <big>**{total_gold_grams - current_zakat:,.2f}g ({grams_to_pawan(total_gold_grams - current_zakat):,.2f} pawan)**</big>, worth <big>**₹{initial_value:,.0f}**</big>" , unsafe_allow_html=True)
-            else:
-                st.write(f"You are currently obligated to pay Zakat of: <big>**{current_zakat:,.2f}g**</big>, worth <big>**₹{current_zakat_value:,.0f}**</big>", unsafe_allow_html=True)
-                st.write(f"The Remaining Gold will be: <big>**{total_gold_grams - current_zakat:,.2f}g**</big>, worth <big>**₹{initial_value:,.0f}**</big>" , unsafe_allow_html=True)
+            st.write(f"You are currently obligated to Pay Zakat of: <big>**{current_zakat:,.2f}g**</big>, worth <big>**₹{current_zakat_value:,.0f}**</big>", unsafe_allow_html=True)
+            st.write(f"The Remaining Gold will be: <big>**{total_gold_grams - current_zakat:,.2f}g**</big>, worth <big>**₹{initial_value:,.0f}**</big>" , unsafe_allow_html=True)
 
         else:
             st.info("The initial gold amount held for over a year is below Nisab, so no Zakat is due currently.")
-    
+
 
         st.subheader("📋 Yearly Breakdown")
-        for yr, zak_gram, current_gram, zak_value, value, status in yearly_results:
-            if unit == "Pawan":
-                pawan_gram = grams_to_pawan(zak_gram)
-                pawan_curr = grams_to_pawan(current_gram)
-                
-                if status == "✅ Zakat Due":
-                    st.write(f"""For year {yr}, Zakat: <big>{zak_gram:,.2f}g ({pawan_gram:,.2f} pawan)</big>, worth <big>₹{zak_value:,.0f}</big>.
-                    Gold after Zakat: <big>{current_gram:,.2f}g ({pawan_curr:,.2f} pawan)</big>, worth <big>₹{value:,.0f}</big>""", unsafe_allow_html=True)
-                else:
-                    st.write(f"""For Year {yr}, total Gold: <big>{current_gram:,.2f}g ({pawan_curr:,.2f} pawan)</big>, worth <big>₹{value:,.0f}</big>""", unsafe_allow_html=True)
+        for yr, zak_gram, current_gram,zak_value, value, status in yearly_results:
+            if status == "✅ Zakat Due" and current_gram >= 85:
+                st.write(status)
+                st.write(f""" For year {yr}, Your Zakat:  <big><b>{zak_gram:,.2f}g</b></big>, worth <big><b>₹{zak_value:,.0f}</b></big><br>
+                Total Gold after Zakat:  <big><b>{current_gram:,.2f}g</b></big>, worth <big><b>₹{value:,.0f}</b></big> """, unsafe_allow_html=True)
+            elif status == "✅ Zakat Due" and current_gram < 85:
+                st.write(status)
+                st.write(f""" For year {yr}, Your Zakat:  <big><b>{zak_gram:,.2f}g</b></big>, worth <big><b>₹{zak_value:,.0f}</b></big><br>
+                Total Gold after Zakat:  <big><b>{current_gram:,.2f}g</b></big>, worth <big><b>₹{value:,.0f}</b></big> """, unsafe_allow_html=True)
+                if yr != years:
+                    st.info("The gold amount thereafter is below Nisab, so no Zakat is due.")
+            elif status == "❌ No zakat (below Nisab)":
+                st.write(status)
+                st.write(f"For Year {yr}: Total Gold Holding:  <big><b>{current_gram:,.2f}g</b></big>, worth <big><b>₹{value:,.0f}</b></big> ", unsafe_allow_html=True)
 
-            else:
-                if status == "✅ Zakat Due":
-                    st.write(f"""For year {yr}, Zakat: <big>{zak_gram:,.2f}g</big>, worth <big>₹{zak_value:,.0f}</big>.
-                    Gold after Zakat: <big>{current_gram:,.2f}g</big>, worth <big>₹{value:,.0f}</big>""", unsafe_allow_html=True)
-                else:
-                    st.write(f"""For Year {yr}, total Gold: <big>{current_gram:,.2f}g</big>, worth <big>₹{value:,.0f}</big>""", unsafe_allow_html=True)
 
         st.subheader("📌 Summary")
 
-        years = yearly_results[-1][0]
+        year = yearly_results[-1][0]
         if gold_grams_over_1_year >= NISAB_GRAMS:
-            years+=1
-        total_zakat_grams = sum(total_zakat_paid)
-        pawan_total = grams_to_pawan(total_zakat_grams)
+            year+=1
+        
+        st.markdown("<h5 style='margin-top: -10px;'>Zakat Paid</h5>", unsafe_allow_html=True)
+        st.write(f"Total Zakat Paid over {year} years: **{sum(total_zakat_paid):,.2f}g**")
+        st.write(f"Value of Total Zakat Paid in INR: **₹{sum(total_zakat_paid_value):,.2f}**")
 
-        if unit == "Pawan":
-            if total_zakat_grams > 8:
-                st.write(f"Total Zakat Paid over {years} years: **{total_zakat_grams:,.2f}g ({pawan_total:,.2f} pawan)**")
-            else:
-                st.write(f"Total Zakat Paid over {years} years: **{total_zakat_grams:,.2f}g**")
-        else:
-            st.write(f"Total Zakat Paid over {years} years: **{total_zakat_grams:,.2f}g**")
+        st.write(" ")
 
-        st.write(f"Value of Zakat Paid in INR: **₹{sum(total_zakat_paid_value):,.2f}**")
-        st.write(f"Final Gold Currently Holding: **{current_gold_grams:,.2f}g**")
+        st.markdown("<h5 style='margin-top: -10px;'>Gold after Zakat</h5>", unsafe_allow_html=True)
+        st.write(f"Gold Currently Holding in Grams: **{current_gold_grams:,.2f}g**")
         st.write(f"Final Value of Gold Currently Holding: **₹{value:,.2f}**")
+
+        st.write(" ")
+
+        st.markdown("<h5 style='margin-top: -10px;'>Growth in Value</h5>", unsafe_allow_html=True)
         st.write(f"Total Appreciation (After Zakat): **{total_appreciation:.2f}%**")
         st.write(f"Effective Annual Growth (CAGR): **{cagr:.2f}%**")
-
 st.markdown("""
 <style>
 .disclaimer-box {
