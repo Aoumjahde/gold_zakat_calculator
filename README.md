@@ -46,6 +46,7 @@ by following these steps:
 ## Tech Stack
 
 Python
+
 Streamlit for interactive UI
 
 
