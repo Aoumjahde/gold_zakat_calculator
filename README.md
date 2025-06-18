@@ -1,4 +1,4 @@
-### Zakat on Gold Calculator & Growth Projection
+# Zakat on Gold Calculator & Growth Projection
 This is a simple Streamlit web app built with Python to help you:
 
 Calculate Zakat due on your gold holdings
@@ -14,7 +14,7 @@ Estimate gold value growth over a selected number of years factoring in annual a
 
 ## How to Run
 
-# Run these commands in your terminal or command prompt.
+### Run these commands in your terminal or command prompt.
 
 1. Clone the repo:
 
