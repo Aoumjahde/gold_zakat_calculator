@@ -18,15 +18,15 @@ Estimate gold value growth over a selected number of years factoring in annual a
 
 1. Clone the repo:
 
-git clone <repo-url>
+  git clone <repo-url>
 
 2. Install dependencies:
 
-pip install streamlit
+  pip install streamlit
 
 3. Run the app:
 
-streamlit run app.py
+  streamlit run app.py
 
 ## How to Deploy on Streamlit Cloud
 
