@@ -9,6 +9,8 @@ st.divider()
 
 st.subheader(":red[Zakat] : is an Islamic financial obligation that requires Muslims to donate a portion" \
 " of their wealth annually to charitable causes based on a minimum threshold known as nisab. ", divider='red')
+st.subheader(":green[Nisab] : refers to the minimum amount of wealth that a Muslim must possess before being obligated to give zakat," \
+" which is a compulsory act of worship involving the donation of a portion of one’s wealth.", divider='green')
 
 
 st.markdown("Easily calculate your annual zakat and estimate gold value growth over time.")
