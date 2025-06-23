@@ -5,8 +5,12 @@ import streamlit as st
 st.set_page_config(page_title="Gold Zakat & Growth Calculator", layout="centered")
 
 st.title("🕌 Gold Zakat & Appreciation Calculator")
-# st.divider() 
-# st.slider("This is a slider", 0, 100, (0, ))
+st.divider() 
+
+st.subheader(":red[Zakat] : is an Islamic financial obligation that requires Muslims to donate a portion" \
+" of their wealth annually to charitable causes based on a minimum threshold known as nisab. ", divider='red')
+
+
 st.markdown("Easily calculate your annual zakat and estimate gold value growth over time.")
 
 NISAB_GRAMS = 85
@@ -25,9 +29,7 @@ else:
     gold_grams_below_1_year = pawan_below * 8
 
 price_per_gram = st.number_input("📈 Current gold price per gram (₹)", min_value=0.0, value=8000.0, step=10.0)
-
 growth_rate = st.number_input("📊 Expected yearly appreciation in INR (%)", min_value=0.0, value=8.0, step=0.1)
-growth_rate = st.number_input(st.slider(input("This is a slider"), 0, 100, (0, )), min_value=0.0, value=8.0, step=0.1)
 
 years = st.number_input("📅 Holding period (years)", min_value=1, value=5, step=1)
 
