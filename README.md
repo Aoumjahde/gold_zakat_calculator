@@ -28,6 +28,9 @@ Estimate gold value growth over a selected number of years factoring in annual a
 
   streamlit run app.py
 
+:warning:	if you have any problmes to install "streamlit", You need to update Python in your device.
+
+
 ## How to Deploy on Streamlit Cloud
 
 You can easily host this app yourself on [Streamlit Cloud](https://streamlit.io/cloud) 
