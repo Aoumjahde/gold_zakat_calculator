@@ -143,7 +143,7 @@ st.markdown("""
     border-radius: 8px;
     font-size: 0.9rem;
     color: #333;
-    margin-top: 40px;
+    margin-top: 35px;
     line-height: 1.6;
 }
 .disclaimer-box h4 {
